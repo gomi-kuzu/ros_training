@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py", line 750, in _invoke_callback
+    cb(msg)
+  File "face2song_v3.py", line 59, in image_callback
+    emo_id = emo(re_img)
+  File "face2song_v3.py", line 15, in emo
+    model = load_model('emo.h5')
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/saving.py", line 260, in load_model
+    model = model_from_config(model_config, custom_objects=custom_objects)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/saving.py", line 334, in model_from_config
+    return deserialize(config, custom_objects=custom_objects)
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/__init__.py", line 55, in deserialize
+    printable_module_name='layer')
+  File "/usr/local/lib/python2.7/dist-packages/keras/utils/generic_utils.py", line 145, in deserialize_keras_object
+    list(custom_objects.items())))
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/sequential.py", line 292, in from_config
+    custom_objects=custom_objects)
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/__init__.py", line 55, in deserialize
+    printable_module_name='layer')
+  File "/usr/local/lib/python2.7/dist-packages/keras/utils/generic_utils.py", line 165, in deserialize_keras_object
+    ':' + function_name)
+ValueError: Unknown layer:layers
+

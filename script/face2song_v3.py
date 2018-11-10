@@ -38,7 +38,6 @@ class estimate_emotion:
         self.count = 0
         self.phese = 0
         self.cmd_id = rospy.Publisher('toggle_song', Int32, queue_size=1)
-        self.face_cascade = cv2.CascadeClassifier('/home/inoma/haarcascade_frontalface_default.xml')
         self.image_sub  = rospy.Subscriber('/face_detection/face_image',Image,self.image_callback)
         self.end_sub = rospy.Subscriber('chatter',Int32,self.song_end_callback)
         
@@ -52,7 +51,7 @@ class estimate_emotion:
             print(self.count)
             if img_g.shape[0] > 200:
                 self.count = self.count + 1
-                if self.count > 4:
+                if self.count > 3:
                     re_img = cv2.resize(img_g,(size,size))
                     # print(in_data)
                     # print(type(in_data))

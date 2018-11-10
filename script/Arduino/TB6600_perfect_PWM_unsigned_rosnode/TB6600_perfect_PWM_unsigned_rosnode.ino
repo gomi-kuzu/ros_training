@@ -193,7 +193,7 @@ void setup() {
   pinMode (ENA2, OUTPUT);
 
   digitalWrite(a,HIGH);
-  digitalWrite(DIR1,LOW);
+  digitalWrite(DIR1,HIGH);
   digitalWrite(ENA1,HIGH);
 
   digitalWrite(DIR2,HIGH);

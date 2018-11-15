@@ -9,19 +9,22 @@ from keras.models import load_model
 import numpy as np
 import os
 import argparse
+import tensorflow as tf
 
+graph = tf.get_default_graph()
 parser = argparse.ArgumentParser()
 parser.add_argument('--zuru', '-z', default=0, type=int)
 args = parser.parse_args()
 
 size = 48
+print("load model")
 
+if args.zuru ==1:
+    model = load_model('./zuru/emo.h5')
+else:
+    model = load_model('emo.h5')
 
 def emo(img):
-    if args.zuru ==1:
-        model = load_model('./zuru/emo.h5')
-    else:
-        model = load_model('emo.h5')
 
     data = np.array(img)
     data = data.astype('float32')
@@ -29,10 +32,11 @@ def emo(img):
     # print(data)
     # print(type(data))
     # print(data.shape)
-
+    global graph
     data = data.reshape(1, size, size, 1)
     print("感情推定開始")
-    pred = model.predict_classes(data)
+    with graph.as_default():
+        pred = model.predict_classes(data)
 
     emo = ["Neutral", "Angry", "Fear", "Happy", "Sadness", "Surprise"]
     print(pred, emo[pred[0]])
@@ -96,6 +100,7 @@ class estimate_emotion:
             rospy.sleep(5)
             
 if __name__ == '__main__':
+    print("START")
     rospy.init_node('estimate_emotion')
     estimater = estimate_emotion()
     rospy.spin()

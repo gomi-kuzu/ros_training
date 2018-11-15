@@ -16,3 +16,8 @@
 7. mainプログラム起動  
 `$ cd ~/catkin_ws/src/ros_training/script/`  
 `$ python face2song_v4.py`  
+
+
+### 同じ推定結果ばっかり出るとき  
+face2song_v4.pyの起動のとき -z 1　オプションつける  
+`python face2song_v4.py -z 1`  

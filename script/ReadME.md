@@ -11,6 +11,8 @@
 5. シリアル通信用のノードを立てる  
 `$ rosrun rosserial_python serial_node.py /dev/ttyACM0`  
 6. 喋らせる用プログラム起動  
+`$ cd ~/catkin_ws/src/ros_training/script/`  
 `$ python voice.py`  
 7. mainプログラム起動  
+`$ cd ~/catkin_ws/src/ros_training/script/`  
 `$ python face2song_v4.py`  

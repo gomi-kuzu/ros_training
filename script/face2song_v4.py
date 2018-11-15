@@ -8,12 +8,20 @@ from std_msgs.msg import Int32
 from keras.models import load_model
 import numpy as np
 import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--zuru', '-z', default=0, type=int)
+args = parser.parse_args()
 
 size = 48
 
 
 def emo(img):
-    model = load_model('emo.h5')
+    if args.zuru ==1:
+        model = load_model('./zuru/emo.h5')
+    else:
+        model = load_model('emo.h5')
 
     data = np.array(img)
     data = data.astype('float32')
@@ -23,7 +31,7 @@ def emo(img):
     # print(data.shape)
 
     data = data.reshape(1, size, size, 1)
-    
+    print("感情推定開始")
     pred = model.predict_classes(data)
 
     emo = ["Neutral", "Angry", "Fear", "Happy", "Sadness", "Surprise"]
